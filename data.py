@@ -4,6 +4,21 @@ import pandas as pd
 
 from settings import binance_session
 
+def save_all_data(timeframe: str): #15m, 1h, 5m ...
+    tickers = binance_session.fetch_tickers()
+    ticker_names = []
+    for key in tickers.keys():
+        ticker_names.append(key.split(":")[0])
+
+    for ticker_name in ticker_names:
+        try:
+            save_data(ticker_name, timeframe)
+        except Exception as e:
+            print("error: ", e)
+        finally:
+            continue
+
+
 def save_data(symbol: str, timeframe: str) -> pd.DataFrame:
     print("symbol name: ", symbol)
     df = pd.DataFrame(columns=['time', 'open', 'high', 'low', 'close', 'volume'])
@@ -30,5 +45,8 @@ def save_data(symbol: str, timeframe: str) -> pd.DataFrame:
     df.to_csv(f"dataset/ohlcv/{symbol}.csv")
     return df
 
-
+def slice_data(data: pd.DataFrame, length: int) -> pd.DataFrame:
+    #slices data to a sequence of length
+    data = 
+    return
 
