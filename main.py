@@ -1,10 +1,15 @@
-import torch
-import ccxt
-from datetime import datetime, timezone
-import pandas as pd
+from core.trader import Trader
+from strategy.simple_rsi import SimpleRSIStrategy
 import time
-from settings import binance_session
-from data import *
 
+if __name__ == "__main__":
+    strategy = SimpleRSIStrategy(period=14)
+    trader = Trader(strategy)
 
-#print(df)
+    while True:
+        try:
+            #trader.run()
+            print("test")
+        except Exception as e:
+            print(f"에러 발생: {e}")
+        time.sleep(60)

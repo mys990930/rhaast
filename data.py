@@ -2,10 +2,12 @@ import time
 from datetime import datetime
 import pandas as pd
 
-from settings import binance_session
+from config import *
+
+session = BinanceAPI()
 
 def save_all_data(timeframe: str): #15m, 1h, 5m ...
-    tickers = binance_session.fetch_tickers()
+    tickers = session.exchange.fetch_tickers()
     ticker_names = []
     for key in tickers.keys():
         ticker_names.append(key.split(":")[0])
@@ -47,6 +49,10 @@ def save_data(symbol: str, timeframe: str) -> pd.DataFrame:
 
 def slice_data(data: pd.DataFrame, length: int) -> pd.DataFrame:
     #slices data to a sequence of length
-    data = 
+    data = "a"
     return
 
+def get_data(symbol: str, timeframe: str):
+    print("symbol name: ", symbol)
+    df = pd.read_csv(f"dataset/ohlcv/{symbol}.csv")
+    return df
